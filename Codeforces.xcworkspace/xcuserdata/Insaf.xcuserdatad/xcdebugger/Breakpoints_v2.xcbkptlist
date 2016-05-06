@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Codeforces/ContestViewController.m"
-            timestampString = "484238262.407417"
+            filePath = "Codeforces/DataManager.m"
+            timestampString = "484244476.935989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "-registerForKeyboardNotifications"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-updateContest:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

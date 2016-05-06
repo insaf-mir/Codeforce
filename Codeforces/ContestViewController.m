@@ -8,9 +8,10 @@
 
 #import "ContestViewController.h"
 #import "DataManager.h"
+#import "ScrollView.h"
 
 @interface ContestViewController () <UITextViewDelegate>
-@property (nonatomic) UIScrollView *scrollView;
+@property (nonatomic) ScrollView *scrollView;
 @end
 
 static CGFloat const maxLength = 20.f;
@@ -37,59 +38,17 @@ static CGFloat const minLength = 10.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped)]];
 
     // Do any additional setup after loading the view.
 }
 
-- (void)registerForKeyboardNotifications {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    
-}
-
-- (void)deregisterFromKeyboardNotifications {
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardDidHideNotification
-                                                  object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    [self registerForKeyboardNotifications];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [self deregisterFromKeyboardNotifications];
-    
-    [super viewWillDisappear:animated];
-    
-}
-
-
-
 - (void)loadView {
     [super loadView];
     
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveChanges)];
+    self.navigationItem.rightBarButtonItem = saveItem;
+    
+    _scrollView = [[ScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:_scrollView];
     
     CGFloat width = self.view.frame.size.width - 2 * minLength;
@@ -159,5 +118,15 @@ static CGFloat const minLength = 10.f;
 
 #pragma mark - user action
 
+- (void)saveChanges {
+    
+    DataManager *dataManager = [DataManager new];
+    
+    _contest.userMark = userMark.text;
+    [dataManager updateContest:_contest];
+    [userMark resignFirstResponder];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 @end

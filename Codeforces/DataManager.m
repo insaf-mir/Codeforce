@@ -19,7 +19,6 @@
     }
     
     self.managedObjectContext = [self managedObjectContext];
-    self.contestsArray = [self getContestsArray];
     
     return self;
 }
@@ -46,19 +45,26 @@
         [newContest setValue:contest.duration forKey:@"duration"];
         [newContest setValue:contest.phase forKey:@"phase"];
         [newContest setValue:contest.date forKey:@"date"];
-
+        
+        NSError *error = nil;
+        if (![[self managedObjectContext] save:&error]) {
+            NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+        }
+        
     }
 }
 
 - (BOOL)isExistContest:(Contest *)contest {
     BOOL flag = NO;
     
-    if (_contestsArray.count == 0) {
+    NSMutableArray *array = [self getContestsArray];
+    
+    if (array.count == 0) {
         return NO;
     }
     else {
-        for (NSDictionary *dic in _contestsArray) {
-            if ([[dic valueForKey:@"identifier"] integerValue] == [contest.identifier integerValue]) {
+        for (NSManagedObject *cont in array) {
+            if ([[cont valueForKey:@"identifier"] integerValue] == [contest.identifier integerValue]) {
                 return YES;
             }
         }
@@ -80,12 +86,12 @@
     
     NSFetchRequest *allContests = [[NSFetchRequest alloc] init];
     [allContests setEntity:[NSEntityDescription entityForName:@"Contests" inManagedObjectContext:context]];
-    [allContests setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    [allContests setIncludesPropertyValues:NO];
     
     NSError *error = nil;
-    NSArray *cars = [context executeFetchRequest:allContests error:&error];
-    for (NSManagedObject *car in cars) {
-        [context deleteObject:car];
+    NSArray *contestsArr = [context executeFetchRequest:allContests error:&error];
+    for (NSManagedObject *contest in contestsArr) {
+        [context deleteObject:contest];
     }
     NSError *saveError = nil;
     [context save:&saveError];
@@ -103,6 +109,25 @@
     contest.userMark = flag ? @"User Marks" : [dic valueForKey:@"userMark"];
     
     return contest;
+}
+
+- (void)updateContest:(Contest *)contest {
+    NSMutableArray *array = [self getContestsArray];
+    NSManagedObject *object = nil;
+    
+    for (NSManagedObject *cont in array) {
+        if ([[cont valueForKey:@"identifier"] integerValue] == [contest.identifier integerValue]) {
+            object = cont;
+            break;
+        }
+    }
+    
+    [object setValue:contest.userMark forKey:@"userMark"];
+    NSError *error = nil;
+    if (![[self managedObjectContext] save:&error]) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
+
 }
 
 

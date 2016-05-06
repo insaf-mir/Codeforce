@@ -28,7 +28,6 @@ static NSString * const BaseURLString = @"http://codeforces.com/api/";
         
         NSDictionary *responseDictionary = [(NSDictionary *)responseObject objectForKey:@"result"];
         NSLog(@"%@", responseDictionary);
-
         
         for (NSDictionary *dic in responseDictionary) {
             Contest *contest = [dataManager getContestFromDictionary:dic fromNetworking:YES];

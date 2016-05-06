@@ -42,7 +42,11 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);
     }
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,7 +89,6 @@
     ContestTableViewCell *cell = [[ContestTableViewCell alloc]init];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *dic = [_fetchedResultsController objectAtIndexPath:indexPath];
-
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"hh:mm d MMMM y";
     
