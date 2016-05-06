@@ -11,6 +11,7 @@
 		B10BD73B1CDC7CC9006B335B /* ContestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10BD73A1CDC7CC9006B335B /* ContestsTableViewController.m */; };
 		B10BD73E1CDCA41B006B335B /* ContestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B10BD73D1CDCA41B006B335B /* ContestTableViewCell.m */; };
 		B10BD7411CDCBC8F006B335B /* ContestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10BD7401CDCBC8F006B335B /* ContestViewController.m */; };
+		B10BD7441CDCE775006B335B /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10BD7431CDCE775006B335B /* ScrollView.m */; };
 		B15161411CDA0D5200315DAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B15161401CDA0D5200315DAA /* main.m */; };
 		B15161441CDA0D5200315DAA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B15161431CDA0D5200315DAA /* AppDelegate.m */; };
 		B15161471CDA0D5200315DAA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B15161461CDA0D5200315DAA /* ViewController.m */; };
@@ -35,6 +36,8 @@
 		B10BD73D1CDCA41B006B335B /* ContestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestTableViewCell.m; sourceTree = "<group>"; };
 		B10BD73F1CDCBC8F006B335B /* ContestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestViewController.h; sourceTree = "<group>"; };
 		B10BD7401CDCBC8F006B335B /* ContestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestViewController.m; sourceTree = "<group>"; };
+		B10BD7421CDCE775006B335B /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollView.h; sourceTree = "<group>"; };
+		B10BD7431CDCE775006B335B /* ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollView.m; sourceTree = "<group>"; };
 		B151613C1CDA0D5200315DAA /* Codeforces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codeforces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15161401CDA0D5200315DAA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B15161421CDA0D5200315DAA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 			children = (
 				B10BD73C1CDCA41B006B335B /* ContestTableViewCell.h */,
 				B10BD73D1CDCA41B006B335B /* ContestTableViewCell.m */,
+				B10BD7421CDCE775006B335B /* ScrollView.h */,
+				B10BD7431CDCE775006B335B /* ScrollView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				B1BBDFB31CDA6FF4008E2607 /* Contests.m in Sources */,
 				B10BD73E1CDCA41B006B335B /* ContestTableViewCell.m in Sources */,
 				B10BD7381CDC6FF9006B335B /* DataManager.m in Sources */,
+				B10BD7441CDCE775006B335B /* ScrollView.m in Sources */,
 				B15161411CDA0D5200315DAA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
