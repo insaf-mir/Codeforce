@@ -38,7 +38,7 @@
     
     [self.navigationController.navigationBar setHidden:NO];
     
-    UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(refreshData)];
+    UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)];
     self.navigationItem.rightBarButtonItem = refreshItem;
     
     NSError *error;
