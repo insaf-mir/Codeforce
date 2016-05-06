@@ -10,6 +10,7 @@
 #import "ContestTableViewCell.h"
 #import "DataManager.h"
 #import "ContestViewController.h"
+#import "Networking.h"
 
 @interface ContestsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -36,6 +37,9 @@
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setHidden:NO];
+    
+    UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(refreshData)];
+    self.navigationItem.rightBarButtonItem = refreshItem;
     
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -243,5 +247,13 @@
     [self.tableView endUpdates];
 }
 
+
+#pragma mark - user action
+
+-(void)refreshData {
+    
+    [Networking getContestList];
+    
+}
 
 @end
