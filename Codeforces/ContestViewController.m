@@ -86,7 +86,7 @@ static CGFloat const minLength = 10.f;
     [self.scrollView addSubview:durationLabel];
     
     UILabel *contestDuration = [[UILabel alloc]initWithFrame:CGRectMake(minLength, CGRectGetMaxY(durationLabel.frame)+minLength, width, 0)];
-    contestDuration.text = [self timeFormatted:[_contest.duration intValue]];
+    contestDuration.text = [self timeFormatted:[_contest.duration longValue]];
     contestDuration.numberOfLines = 0;
     [contestDuration sizeToFit];
     [self.scrollView addSubview:contestDuration];
@@ -108,12 +108,12 @@ static CGFloat const minLength = 10.f;
     _scrollView.contentOffset = CGPointMake(0, 0);
 }
 
-- (NSString *)timeFormatted:(int)totalSeconds{
+- (NSString *)timeFormatted:(long)totalSeconds{
     
-    int minutes = (totalSeconds / 60) % 60;
-    int hours = totalSeconds / 3600;
+    long minutes = (totalSeconds / 60) % 60;
+    long hours = totalSeconds / 3600;
     
-    return [NSString stringWithFormat:@"%02d:%02d",hours, minutes];
+    return [NSString stringWithFormat:@"%02ld:%02ld",hours, minutes];
 }
 
 #pragma mark - user action
